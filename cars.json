@@ -1,7 +1,7 @@
 
      [
       {
-        "model": "Toyota Camry",
+        "model": 2006,
         "make": "Toyota",
         "color": "Silver",
         "registration_number": "ABC123",
@@ -9,7 +9,7 @@
         "address": "123 Main Street, Anytown, USA"
       },
       {
-        "model": "Ford Mustang",
+        "model": 2023,
         "make": "Ford",
         "color": "Red",
         "registration_number": "XYZ789",
@@ -17,7 +17,7 @@
         "address": "456 Elm Street, Anytown, USA"
       },
       {
-        "model": "Honda Civic",
+        "model": 2022,
         "make": "Honda",
         "color": "Blue",
         "registration_number": "DEF456",
@@ -25,7 +25,7 @@
         "address": "789 Oak Street, Anytown, USA"
       },
       {
-        "model": "BMW 3 Series",
+        "model": 2011,
         "make": "BMW",
         "color": "Black",
         "registration_number": "GHI789",
@@ -33,7 +33,7 @@
         "address": "101 Pine Street, Anytown, USA"
       },
       {
-        "model": "Chevrolet Silverado",
+        "model": 2007,
         "make": "Chevrolet",
         "color": "White",
         "registration_number": "JKL012",
