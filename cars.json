@@ -1,0 +1,45 @@
+
+     [
+      {
+        "model": "Toyota Camry",
+        "make": "Toyota",
+        "color": "Silver",
+        "registration_number": "ABC123",
+        "owner": "John Smith",
+        "address": "123 Main Street, Anytown, USA"
+      },
+      {
+        "model": "Ford Mustang",
+        "make": "Ford",
+        "color": "Red",
+        "registration_number": "XYZ789",
+        "owner": "Emily Johnson",
+        "address": "456 Elm Street, Anytown, USA"
+      },
+      {
+        "model": "Honda Civic",
+        "make": "Honda",
+        "color": "Blue",
+        "registration_number": "DEF456",
+        "owner": "Michael Davis",
+        "address": "789 Oak Street, Anytown, USA"
+      },
+      {
+        "model": "BMW 3 Series",
+        "make": "BMW",
+        "color": "Black",
+        "registration_number": "GHI789",
+        "owner": "Sarah Thompson",
+        "address": "101 Pine Street, Anytown, USA"
+      },
+      {
+        "model": "Chevrolet Silverado",
+        "make": "Chevrolet",
+        "color": "White",
+        "registration_number": "JKL012",
+        "owner": "David Garcia",
+        "address": "222 Maple Street, Anytown, USA"
+      }
+    ]
+  
+  
