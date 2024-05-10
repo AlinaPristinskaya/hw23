@@ -2,13 +2,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 // Import routes
 const getBlogs = require('./routes/getBlogs');
 const getCars = require('./routes/getCars');
 
 // Initialize express
 const app = express();
+// CORS configuration
+app.use(cors({
+  origin: 'http://localhost:3000'  // This is the URL of your React app
+}));
 
 // Set up port for server to listen on
 const PORT = process.env.PORT || 8080;

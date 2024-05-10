@@ -25,6 +25,14 @@ exports.create = async (req, res) => {
         });
     }
 };
+exports.addNew= async (body) => {
+    const savedCar= await carModel.save(body);
+    return savedCar
+  
+  }
+
+
+
 
 exports.findAll = (req, res) => {
     // Use the "find" method to return all cars
