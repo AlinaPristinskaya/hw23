@@ -12,12 +12,12 @@ router.get('/', carController.findAll);
 
 // Get old cars
 router.get('/old', carController.findOldcars);
-
+// Update many by id
+router.put('/bulk-update', carController.updateCars);
 
 // Update by id
 router.put('/:id', carController.updateCar);
-// Update many by id
-router.put('bulk-update', carController.updateCars);
+
 // Delete all cars by id
 router.delete('/:id', carController.deleteCar);
 
