@@ -28,11 +28,6 @@ const carSchema = mongoose.Schema({
   },
   //to store all previous owners for a specific car
   // we add an optional property to the model "owners"
-  owners: {
-    type: Array,
-    required: false,
-    default: []
-  },
   address: {
     type: String,
     required: true,

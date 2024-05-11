@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api';
 
-const CarList = ({ setCarToEdit }) => {
+const CarList = ({ setCarToEdit, refresh}) => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
         fetchCars();
-    }, []);
+    }, [refresh]); 
 
     const fetchCars = async () => {
         try {
@@ -21,7 +21,7 @@ const CarList = ({ setCarToEdit }) => {
     const deleteCar = async (id) => {
         try {
             await api.delete(`/cars/${id}`);
-            fetchCars();  // refresh list after deleting
+            refresh();  // update list after deleting
         } catch (error) {
             console.error('Failed to delete car', error);
         }
@@ -40,6 +40,7 @@ const CarList = ({ setCarToEdit }) => {
                 ))}
             </ul>
         </div>
+        
     );
 };
 

@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api';
 
-const CarsOld = ({ setCarToEdit }) => {
+const CarsOld = ({ refresh}) => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
         fetchCars();
-    }, []);
+    }, [refresh]);
 
     const fetchCars = async () => {
         try {

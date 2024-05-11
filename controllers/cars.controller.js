@@ -1,38 +1,19 @@
 const Car = require('../models/car.model');
 
-exports.create = async (req, res) => {
+
+exports.addNew= async (req, res) => {
     try {
-        // Create a new car
-        const carModel = new Car({
-        model: 2022,
-        make: "Ford Fiesta",
-        registration_number: "AB999HR",
-        owner: "Sue Bailey",
-        address: "13 Main Road, Johannesburg, South Africa"
-        });
-
-        // Save the new car
-        const savedCar= await carModel.save();
-
-        // Success response
-        console.log(savedCar);
-        res.send('The car has been added');
+        const newCar =await Car.create(req.body)
+        if (newCar) {
+            res.send(newCar);
+        } else {
+            res.send("ups");
+        }
     } catch (error) {
-        // Error response
-        console.error(error);
-        res.status(500).send({
-            message: "Some error occurred while creating the car."
-        });
+        console.error("An error occurred while removing cars.", error);
+        res.status(500).send("An error occurred while removing cars.");
     }
 };
-exports.addNew= async (body) => {
-    const savedCar= await carModel.save(body);
-    return savedCar
-  
-  }
-
-
-
 
 exports.findAll = (req, res) => {
     // Use the "find" method to return all cars
@@ -67,37 +48,17 @@ exports.findOldcars = (req, res) => {
 };
 
 
-exports.updateByOwner = async (req, res) => {
-    try {
-        // Define the query to find cars with the specified owner
-        const query = { owner: 'Sue Bailey' };
 
-        // Define the new data to update the owner
-        const update = { owner: 'Sue Smith'};
 
-        /* Use the "findOneAndUpdate" method to update a car with the
-        specified owner and set the "new" option to true to get the
-        updated document as the result */
-        const updatedCar = await Car.findOneAndUpdate(query, update, { new: true });
-        if (updatedCar) {
-            res.send("Updated successfully");
-        } else {
-            res.status(404).send("Updates failed");
-        }
-    } catch (error) {
-        console.error("Something went wrong when updating data.", error);
-        res.status(500).send("An error occurred while updating.");
-    }
-};
-//same update with different values query and update
-exports.updateOwnersByCar = async (req, res) => {
+exports.updateCar = async (req, res) => {
     try {
         
-        const query = { make: "Ford Fiesta" };
-        const update = { owners: ["Hanna Smith", "Mark Perfitt", "Samanta Balan"]};
-        const updatedCar = await Car.findOneAndUpdate(query, update, { new: true });
+        const query = req.params.id
+        const update = req.body;
+        console.log(update);
+        const updatedCar = await Car.findByIdAndUpdate(query, update, { new: true });
         if (updatedCar) {
-            res.send("Updated successfully");
+            res.send(updatedCar);
         } else {
             res.status(404).send("Updates failed");
         }
@@ -107,37 +68,31 @@ exports.updateOwnersByCar = async (req, res) => {
     }
 };
 
-//same update with different values query and update
-exports.updateAddressByOwner = async (req, res) => {
-    try {
-        const query = { owner: 'Sue Bailey' };
-        const update = { address: '21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa'};
-        const updatedCar = await Car.findOneAndUpdate(query, update, { new: true });
-
-        if (updatedCar) {
-            res.send("Updated successfully");
-        } else {
-            res.status(404).send("Updates failed");
-        }
-    } catch (error) {
-        console.error("Something went wrong when updating data.", error);
-        res.status(500).send("An error occurred while updating.");
-    }
-};
-
-
-exports.deleteCarsByOwner = async (req, res) => {
-    try {
-        // Remove all cars with the specified owner
-        const deleteResult = await Car.deleteMany({ owner: 'Sue Bailey' });
-
-        if (deleteResult.deletedCount > 0) {
-            res.send("Successfully deleted all cars from owner.");
-        } else {
-            res.send("Owner not found...");
-        }
+exports.deleteCar=async (req, res)=>{
+    try{
+        const removeCar=await Car.findByIdAndDelete(req.params.id);
+        res.status(204).send(removeCar);
     } catch (error) {
         console.error("An error occurred while removing cars.", error);
         res.status(500).send("An error occurred while removing cars.");
+    }
+}
+exports.updateCars =async (req, res)=>{
+    const updates = req.body; // Expected to be an array of objects with car IDs and their updates
+    try {
+        const bulkOps = updates.map(update => {
+            return {
+                updateOne: {
+                    filter: { _id: update.id },
+                    update: { $set: update.data }
+                }
+            };
+        });
+console.log(updates)
+        await Car.bulkWrite(bulkOps);
+        res.send({ message: 'Cars updated successfullyyyyyy' });
+    } catch (error) {
+        console.error('Bulk update error:', error);
+        res.status(500).json({ message: 'Error updating cars', error: error });
     }
 };

@@ -4,8 +4,8 @@ const router = express.Router();
 const carController = require('../controllers/cars.controller');
 
 // Create a new car
-router.post('/add', carController.create);
-router.post('/add-new', carController.addNew);
+//router.post('/add', carController.create);
+router.post('/add', carController.addNew);
 
 // Get all cars
 router.get('/', carController.findAll);
@@ -13,17 +13,13 @@ router.get('/', carController.findAll);
 // Get old cars
 router.get('/old', carController.findOldcars);
 
-// Update a owner
-router.put('/update-owner', carController.updateByOwner);
 
-// Update owners by car
-router.put('/update-owners', carController.updateOwnersByCar);
-
-// Update address by owner
-router.put('/update-address', carController.updateAddressByOwner);
-
-// Delete all cars by owner
-router.delete('/delete-cars', carController.deleteCarsByOwner);
+// Update by id
+router.put('/:id', carController.updateCar);
+// Update many by id
+router.put('bulk-update', carController.updateCars);
+// Delete all cars by id
+router.delete('/:id', carController.deleteCar);
 
 
 module.exports = router;

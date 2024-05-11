@@ -1,21 +1,28 @@
+import "./App.css";
+import CarForm from "./Components/CarForm";
+import CarList from "./Components/CarList";
+import CarsOld from "./Components/CarsOld";
 
-import './App.css';
-import CarForm from './Components/CarForm';
-import CarList from './Components/CarList';
-import CarsOld from './Components/CarsOld';
-import CarAdd from './Components/CarAdd'
-import CarDelete from './Components/CarDelete';
 
+import React, { useState } from "react";
 function App() {
+  const [carToEdit, setCarToEdit] = useState(null);
+  const [refresh, setRefresh] = useState(false);
+
+  const triggerRefresh = () => {
+      setRefresh(prevRefresh => !prevRefresh); // toggle refresh state
+  };
   return (
- 
-  <div>
-      <CarList></CarList>
-      <CarsOld></CarsOld>
-      <CarAdd></CarAdd>
-      <CarDelete></CarDelete>
-      <CarForm></CarForm>
-  </div>
+    <div>
+      <CarForm
+        carToEdit={carToEdit} setCarToEdit={setCarToEdit} refresh={triggerRefresh} 
+        
+        
+      />
+      <CarList setCarToEdit={setCarToEdit} refresh={triggerRefresh} 
+        />
+      <CarsOld refresh={triggerRefresh} ></CarsOld>
+    </div>
   );
 }
 
