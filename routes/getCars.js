@@ -12,7 +12,8 @@ router.get('/', carController.findAll);
 
 // Get old cars
 router.get('/old', carController.findOldcars);
-// Update many by id
+
+// Update many
 router.put('/bulk-update', carController.updateCars);
 
 // Update by id

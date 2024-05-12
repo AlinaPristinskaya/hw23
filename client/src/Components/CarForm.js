@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../api";
 
+//component form for updating or adding one machine
+
 const CarForm = ({  carToEdit, setCarToEdit, refresh }) => {
   const [formData, setFormData] = useState({
     make: "",
